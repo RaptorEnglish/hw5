@@ -9,6 +9,7 @@
 
 #include "wordle.h"
 #include "dict-eng.h"
+#include <map>
 using namespace std;
 
 
@@ -26,14 +27,23 @@ bool green_check(const std::string& word, const std::string& in) {
 
 // check if word has floating letters
 bool yellow_check(const std::string& word, const std::string& floating) {
-    if (floating.size() == 0) return true;
+    std::map<char, int> word_count;
 
-    for (const char l1 : floating) {
-        for (const char l2 : word) {
-            if (l1 == l2) return true;
+    // Contar las letras en la palabra
+    for (char c : word) {
+        word_count[c]++;
+    }
+
+    // Contar las letras en floating y verificar que están en word
+    for (char c : floating) {
+        if (word_count[c] > 0) {
+            word_count[c]--;  // marcarla como usada
+        } else {
+            return false;  // no está presente o no hay suficientes ocurrencias
         }
     }
-    return false;
+
+    return true;
 }
 
 // check if word in dictionary
