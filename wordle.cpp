@@ -1,8 +1,6 @@
 #ifndef RECCHECK
-// For debugging
 #include <iostream>
-// For std::remove
-#include <algorithm> 
+#include <algorithm>
 #include <map>
 #include <set>
 #endif
@@ -59,13 +57,14 @@ void recursive_helper(
         std::set<std::string>& found,
         const std::string& in,
         const std::string& floating,
-        const std::set<std::string>& dict
+        const std::set<std::string>& dict,
+        const std::set<std::string>& prefixes
         ) {
     
     //std::cout <<"checking"<<word<<std::endl;
     // base case the word lengths are at max (grown to maturity)
     if (depth == 0) {
-        // check for floating and if word is in dictionary
+        // check  floating and if word is in dictionary
         if (yellow_check(word, floating) && dict_check(word, dict)) {
             found.insert(word);
         }
@@ -75,11 +74,22 @@ void recursive_helper(
     // add next letter to branch
     for (char letter = 'a'; letter <= 'z'; letter++) {
         // check if known positions are valid
-        if (green_check(word + letter, in)) {
-            recursive_helper(word + letter, depth - 1, found, in, floating, dict);
+        if (green_check(word + letter, in) && dict_check(word, prefixes)) {
+            recursive_helper(word + letter, depth - 1, found, in, floating, dict, prefixes);
         }
     }
 
+}
+
+// helper function to create a prefix set to limit the searchable space
+void make_prefix_set(const std::set<std::string>& dict, std::set<std::string>& prefixes) {
+    for (const std::string& word : dict) {
+        int i = 0;
+        while (i < word.size()) {
+            prefixes.insert(word.substr(0, i));
+            i++;
+        }
+    }
 }
 
 
@@ -90,10 +100,14 @@ std::set<std::string> wordle(
     const std::set<std::string>& dict)
 {
     // Add your code here
+
+    // create prefix set as heuristic
+    std::set<std::string> prefix_set;
+    make_prefix_set(dict, prefix_set);
+
+    // find combos
     std::set<std::string> found;
-    std::cout<<"floating: "<<floating<<std::endl;
-    std::cout<<"in:"<<in<<std::endl;
-    recursive_helper("", in.size(), found, in, floating, dict);
+    recursive_helper("", in.size(), found, in, floating, dict, prefix_set);
 
     return found;
 

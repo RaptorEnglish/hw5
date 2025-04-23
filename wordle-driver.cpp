@@ -28,5 +28,8 @@ int main(int argc, char* argv[])
     for(auto s : answers){
         cout << s << endl;
     }
+
+//    std::string abc = "abc";
+//    std::cout << abc.find('a') << std::endl;
     return 0;
 }
