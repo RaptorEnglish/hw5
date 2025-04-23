@@ -61,6 +61,8 @@ void recursive_helper(
         const std::string& floating,
         const std::set<std::string>& dict
         ) {
+    
+    //std::cout <<"checking"<<word<<std::endl;
     // base case the word lengths are at max (grown to maturity)
     if (depth == 0) {
         // check for floating and if word is in dictionary
@@ -89,7 +91,8 @@ std::set<std::string> wordle(
 {
     // Add your code here
     std::set<std::string> found;
-
+    std::cout<<"floating: "<<floating<<std::endl;
+    std::cout<<"in:"<<in<<std::endl;
     recursive_helper("", in.size(), found, in, floating, dict);
 
     return found;
