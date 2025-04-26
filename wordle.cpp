@@ -1,11 +1,9 @@
 #ifndef RECCHECK
 #include <map>
 #include <set>
-#include "wordle.h"
-//#include "dict-eng.h"
 #endif
 
-
+// for for for
 
 // Add prototypes of helper functions here
 
@@ -98,7 +96,7 @@ std::set<std::string> wordle(
     std::set<std::string> prefix_set;
     make_prefix_set(dict, prefix_set);
 
-    // find combos
+    //  combos
     std::set<std::string> found;
     recursive_helper("", in.size(), found, in, floating, dict, prefix_set);
 
