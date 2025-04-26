@@ -50,7 +50,6 @@ bool is_valid(
 
 
 // backtracking function that tests solutions recursively
-// backtracking function that tests solutions recursively
 bool backtrack(
         DailySchedule& sched,
         const AvailabilityMatrix& avail,
@@ -111,7 +110,6 @@ bool schedule(
         return false;
     }
     sched.clear();
-//    return false;
 
     // Add your code below
 
@@ -120,13 +118,8 @@ bool schedule(
 
     // use backtrack function
     bool result = backtrack(sched, avail, dailyNeed, maxShifts);
-    return result;
-    if (backtrack(sched, avail, dailyNeed, maxShifts)) {
-        return true;
-    } else {
-        return false;
-    }
 
+    return result;
 
 }
 
