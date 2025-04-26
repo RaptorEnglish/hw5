@@ -74,13 +74,15 @@ void recursive_helper(
 }
 
 // helper function to create a prefix set to limit the searchable space
+void insert_prefixes_recursive(const std::string& word, int i, std::set<std::string>& prefixes) {
+    if (i == word.size()) return;
+    prefixes.insert(word.substr(0, i));
+    insert_prefixes_recursive(word, i + 1, prefixes);
+}
+
 void make_prefix_set(const std::set<std::string>& dict, std::set<std::string>& prefixes) {
     for (const std::string& word : dict) {
-        int i = 0;
-        while (i < word.size()) {
-            prefixes.insert(word.substr(0, i));
-            i++;
-        }
+        insert_prefixes_recursive(word, 0, prefixes);
     }
 }
 
