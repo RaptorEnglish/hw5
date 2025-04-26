@@ -111,7 +111,7 @@ bool schedule(
         return false;
     }
     sched.clear();
-    return false;
+//    return false;
 
     // Add your code below
 
@@ -119,6 +119,8 @@ bool schedule(
     sched.push_back(std::vector<Worker_T>());
 
     // use backtrack function
+    bool result = backtrack(sched, avail, dailyNeed, maxShifts);
+    return result;
     if (backtrack(sched, avail, dailyNeed, maxShifts)) {
         return true;
     } else {
