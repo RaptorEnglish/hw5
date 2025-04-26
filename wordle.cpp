@@ -1,14 +1,10 @@
 #ifndef RECCHECK
-#include <iostream>
-#include <algorithm>
 #include <map>
 #include <set>
-#endif
-
 #include "wordle.h"
 #include "dict-eng.h"
-#include <map>
-using namespace std;
+#endif
+
 
 
 // Add prototypes of helper functions here
@@ -61,7 +57,6 @@ void recursive_helper(
         const std::set<std::string>& prefixes
         ) {
     
-    //std::cout <<"checking"<<word<<std::endl;
     // base case the word lengths are at max (grown to maturity)
     if (depth == 0) {
         // check  floating and if word is in dictionary
