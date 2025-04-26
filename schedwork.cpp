@@ -107,11 +107,11 @@ bool schedule(
     DailySchedule& sched
 )
 {
-    return true;
     if(avail.size() == 0U){
         return false;
     }
     sched.clear();
+    return false;
 
     // Add your code below
 
