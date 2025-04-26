@@ -16,15 +16,26 @@ void printSchedule(const DailySchedule& sched);
 
 int main()
 {
-    // Replace the matrix below with your test case
-    AvailabilityMatrix avail = { 
-        {1, 1, 1, 1},
-        {1, 0, 1, 0},
-        {1, 1, 0, 1},
-        {1, 0, 0, 1}
+
+    size_t dailyNeed = 1;
+    size_t maxShifts = 3;
+    bool expectedResult = true;
+    AvailabilityMatrix avail = {
+            {1},
+            {1},
+            {1}
     };
+
+//    // Replace the matrix below with your test case
+//    AvailabilityMatrix avail = {
+//        {1, 1, 1, 1},
+//        {1, 0, 1, 0},
+//        {1, 1, 0, 1},
+//        {1, 0, 0, 1}
+//    };
     DailySchedule sched;
-    bool solutionFound = schedule(avail, 2, 2, sched);
+    bool solutionFound = schedule(avail, dailyNeed, maxShifts, sched);
+    std::cout << "solution " << solutionFound << std::endl;
     if(solutionFound)
     {
         printSchedule(sched);
