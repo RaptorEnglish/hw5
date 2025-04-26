@@ -3,7 +3,6 @@
 #include <set>
 #endif
 
-// for for for
 
 // Add prototypes of helper functions here
 
@@ -77,8 +76,10 @@ void recursive_helper(
 // helper function to create a prefix set to limit the searchable space
 void make_prefix_set(const std::set<std::string>& dict, std::set<std::string>& prefixes) {
     for (const std::string& word : dict) {
-        for (int i = 0; i < word.size(); i++) {
+        int i = 0;
+        while (i < word.size()) {
             prefixes.insert(word.substr(0, i));
+            i++;
         }
     }
 }
