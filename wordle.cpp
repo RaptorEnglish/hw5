@@ -2,7 +2,7 @@
 #include <map>
 #include <set>
 #include "wordle.h"
-#include "dict-eng.h"
+//#include "dict-eng.h"
 #endif
 
 
@@ -79,10 +79,8 @@ void recursive_helper(
 // helper function to create a prefix set to limit the searchable space
 void make_prefix_set(const std::set<std::string>& dict, std::set<std::string>& prefixes) {
     for (const std::string& word : dict) {
-        int i = 0;
-        while (i < word.size()) {
+        for (int i = 0; i < word.size(); i++) {
             prefixes.insert(word.substr(0, i));
-            i++;
         }
     }
 }
